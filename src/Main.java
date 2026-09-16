@@ -107,6 +107,10 @@ public class Main {
                         break;
 
                     case 10:
+                        saveDataToFile();
+                        break;
+
+                    case 11:
                         running = false;
                         System.out.println(
                                 "\nThank you for using the system."
@@ -151,7 +155,8 @@ public class Main {
         System.out.println("7. View Activities");
         System.out.println("8. View Meetings");
         System.out.println("9. View Reports");
-        System.out.println("10. Exit");
+        System.out.println("10. Save Data to File");
+        System.out.println("11. Exit");
         System.out.println("==============================================");
         System.out.print("Enter your choice: ");
     }
@@ -292,6 +297,12 @@ public class Main {
         );
 
         String type = scanner.nextLine();
+        if (findGroup(groupId) != null) {
+            throw new IllegalArgumentException(
+                    "Group ID already exists."
+            );
+        }
+
 
         Group group = new Group(
                 groupId,
@@ -425,6 +436,17 @@ public class Main {
 
         System.out.print("Location: ");
         String location = scanner.nextLine();
+        for (Activity existingActivity :
+            activityService.getActivities()) {
+
+            if (existingActivity.getActivityId()
+                    .equalsIgnoreCase(activityId)) {
+
+                throw new IllegalArgumentException(
+                        "Activity ID already exists."
+                );
+            }
+        }
 
         Activity activity = new Activity(
                 activityId,
@@ -504,4 +526,46 @@ public class Main {
 
         return null;
     }
-}
+    private static void saveDataToFile() {
+
+        try {
+
+            FileManager.createDirectory("data");
+
+            StringBuilder data = new StringBuilder();
+
+            data.append("STUDENT FREE TIME MANAGEMENT SYSTEM\n");
+            data.append("====================================\n\n");
+
+            data.append("Total Students: ")
+                    .append(students.size())
+                    .append("\n");
+
+            data.append("Total Groups: ")
+                    .append(groups.size())
+                    .append("\n");
+
+            data.append("Total Activities: ")
+                    .append(activityService.getActivities().size())
+                    .append("\n");
+
+            data.append("Total Meetings: ")
+                    .append(meetingService.getMeetings().size())
+                    .append("\n");
+
+            FileManager.writeFile(
+                    "data/project_data.txt",
+                    data.toString()
+            );
+
+            System.out.println(
+                    "Project data saved successfully."
+            );
+
+        } catch (IOException e) {
+
+            System.out.println(
+                    "File error: " + e.getMessage()
+            );
+        }
+    }

@@ -1,185 +1,131 @@
 # 🚀 SYNCSPACE — Student Free Time Management & Collaborative Activity Scheduler
-
-## 📌 Overview
-
-This project implements a console-based Java application that helps
-college students coordinate their schedules and find common free time
-for collaborative activities.
-
+ 
+## 📌 Overview 
+This project implements a console-based Java application that helps students manage their free time and coordinate group activities efficiently.
+ 
 The system allows students to:
-
-- Register their details
-- Add available time slots
-- Create groups
-- Add group members
-- Find common free time
-- Schedule activities
-- Detect scheduling conflicts
-- Generate basic reports
-- Save project data to a file
-
-The main goal is to reduce the difficulty of manually comparing
-multiple student schedules.
-
+- Register student details
+- Add and manage free-time slots
+- Create student groups
+- Add students to groups
+- Find common free time among group members
+- Schedule activities and meetings
+- View activities and meetings
+- Generate project reports
+- Save project data to files
+ 
 ---
-
-## 🎯 Objective
-
-To design and implement a Java-based scheduling system that:
-
+ 
+## 🎯 Objective 
+To design a student scheduling system that:
 - Manages student information
-- Stores student availability
-- Organizes students into groups
-- Finds common free-time intervals
-- Schedules collaborative activities
-- Detects conflicting meetings
-- Demonstrates practical Java programming concepts
-
+- Handles individual free-time schedules
+- Finds common available time for groups
+- Supports collaborative activity scheduling
+- Detects scheduling conflicts
+- Maintains meeting and activity information
+- Stores project data using file handling
+ 
 ---
-
-## 🧠 Concepts Used
-
-- Object-Oriented Programming
+ 
+## 🧠 Concepts Used 
+- Object-Oriented Programming (OOP)
 - Classes and Objects
 - Encapsulation
-- Constructors
-- ArrayList
-- HashMap
 - Java Collections
 - Exception Handling
 - Custom Exceptions
-- Assertions and Invariants
-- File Handling
-- `Files` Class
-- `Path` Interface
-- `LocalDate`
-- `LocalTime`
-- Scheduling Algorithms
+- Java Date and Time API
 - Input Validation
-
+- File Handling
+- Java NIO Files and Path
+- Modular Programming
+- Service-Based Architecture
+ 
 ---
-
-## ⚙️ Technologies
-
-- Java 11 or later
+ 
+## ⚙️ Technologies 
+- Java 11+
 - Java Collections Framework
-- Java NIO File API
-- Git
+- Java `java.time` Package
+- Java NIO
+- Scanner
 - GitHub
-- Console / Command-Line Interface
-
+- GitHub Codespaces
+ 
 ---
-
-## 🧩 Problem Setup
-
-The system manages:
-
-- Students
-- Student free-time slots
-- Collaborative groups
-- Group activities
-- Scheduled meetings
-
-Example:
-
+ 
+## 🧩 Problem Setup 
+- Students register their personal academic details
+- Students define their available/free-time slots
+- Groups are created for projects, clubs, studies, or competitions
+- Students can be added to groups
+- The system identifies common free time among group members
+- Activities can be scheduled during suitable time slots
+- Meetings are automatically maintained for scheduled activities
+- Project information can be saved to a file
+ 
+---
+ 
+## 🧮 Cost Function 
+The system focuses on finding suitable common free-time intervals rather than using a numerical cost function.
+ 
+For a group of students, the common available interval is determined by comparing the schedules of all group members.
+ 
+For example:
+ 
 ```text
-Student A → 04:00 PM - 07:00 PM
-Student B → 05:00 PM - 08:00 PM
-Student C → 05:30 PM - 07:30 PM
-Student D → 06:00 PM - 08:00 PM
+Student 1: 16:00 - 19:00
+Student 2: 17:00 - 20:00
+Student 3: 17:30 - 19:30
+Student 4: 18:00 - 20:00
+ 
+Common Free Time: 18:00 - 19:00
 ```
-The system identifies:
-Common Free Time → 06:00 PM - 07:00 PM
-
----
-
-## 🧮 Common-Time Calculation
-
-For two time intervals, the common interval is calculated using:
-
-Common Start = MAX(Start Time 1, Start Time 2)
-
-Common End = MIN(End Time 1, End Time 2)
-
-A valid common interval exists when:
-
-Common Start < Common End
-
-For multiple students, the system repeatedly compares the current
-common availability with the next student's free-time slots.
-
----
-
 ## 🔍 Algorithms Used
-1. Time Interval Intersection
+1. Schedule Matching (Main)
+- Compares the free-time schedules of group members
+- Identifies overlapping time intervals
+- Finds the time periods when all group members are available
+- Helps select a suitable time for collaborative activities
+  
+2. Validation
+- Validates student information
+- Checks duplicate student IDs
+- Validates group and student existence
+- Checks valid start and end times
+- Prevents duplicate activity IDs
+- Handles invalid scheduling operations
 
-The system compares the free-time slots of group members to identify
-overlapping intervals.
+## 🏃 How to Run
+java -version
+javac -version
 
-Example:
+mkdir -p out
+javac -d out src/exception/*.java src/model/*.java src/service/*.java src/util/*.java src/Main.java
 
-Student A → 04:00 - 07:00
-Student B → 05:00 - 08:00
+java -cp out Main
 
-Common Time → 05:00 - 07:00
-2. Conflict Detection
+## 📊 Output
 
-Before scheduling a meeting, the system checks existing activities.
+## 🔮 Future Work
+- Graphical User Interface (GUI)
+- Web-based application
+- Database integration
+- Student login and authentication
+- Email notifications
+- Calendar integration
+- Automatic conflict resolution
+- Recurring activities
+- Mobile application
+- Cloud-based data storage
+- Advanced scheduling algorithms
 
-Two activities conflict when:
-
-Same Date
-    AND
-Time Intervals Overlap
-
-If a conflict is detected, the meeting is rejected.
-
----
-
-## 🧩 Project Modules
-1. Student Management
-
-Registers students using:
-
-- Student ID
-- Name
-- Department
-- Academic Year
-
-2. Free-Time Management
-
-Stores available time slots for each student.
-
-3. Group Management
-
-Creates groups and manages group members.
-
-4. Common-Time Matching
-
-Finds the time intervals when all members of a group are available.
-
-5. Activity Management
-
-Creates and manages project, club, study, and competition activities.
-
-6. Meeting Management
-
-Schedules meetings and checks for conflicts.
-
-7. Reporting
-
-Displays:
-
-- Total students
-- Total groups
-- Total activities
-- Total meetings
-
-8. File Management
-
-Uses Java Files and Path APIs for file and directory operations.
-
----
-
-
-
+## 📚 References
+- Java Documentation
+- Java Collections Framework
+- Java Date and Time API
+- Java NIO Files API
+- Object-Oriented Programming Concepts
+- GitHub Documentation
+- GitHub Codespaces Documentation

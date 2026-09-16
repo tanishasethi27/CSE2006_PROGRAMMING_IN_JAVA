@@ -120,7 +120,7 @@ public class Main {
                     default:
                         System.out.println(
                                 "\nInvalid choice. "
-                                + "Please select 1-10."
+                                + "Please select 1-11."
                         );
                 }
 

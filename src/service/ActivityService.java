@@ -78,7 +78,7 @@ public class ActivityService {
 
         for (Activity activity : activities) {
 
-            if (activity.getTite()
+            if (activity.getTitle()
                     .equalsIgnoreCase(activityName)) {
 
                 activities.remove(activity);

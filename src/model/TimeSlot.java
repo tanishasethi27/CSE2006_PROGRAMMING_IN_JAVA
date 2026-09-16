@@ -23,6 +23,8 @@ public class TimeSlot {
 
         this.startTime = startTime;
         this.endTime = endTime;
+        assert this.startTime.isBefore(this.endTime)
+        : "Invalid time slot invariant";
     }
 
     public LocalTime getStartTime() {

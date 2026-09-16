@@ -44,6 +44,15 @@ public class Main {
     public static void main(String[] args) {
 
         boolean running = true;
+        try {
+            FileManager.createDirectory("data");
+        } catch (IOException e) {
+            System.out.println(
+                    "Unable to create data directory: "
+                        + e.getMessage()
+           );
+        }
+        
 
         System.out.println("==============================================");
         System.out.println(" STUDENT FREE TIME MANAGEMENT SYSTEM");

@@ -13,22 +13,31 @@ public class MeetingService {
         meetings = new ArrayList<>();
     }
 
-    // Schedule a new meeting
-    public void scheduleMeeting(Activity activity) {
+    // Schedule a new meeting after checking conflicts
+public void scheduleMeeting(Activity activity) {
 
-        if (activity == null) {
-            throw new IllegalArgumentException(
-                    "Meeting cannot be null."
-            );
-        }
-
-        meetings.add(activity);
-
-        System.out.println(
-                "Meeting scheduled successfully."
+    if (activity == null) {
+        throw new IllegalArgumentException(
+                "Meeting cannot be null."
         );
     }
 
+    for (Activity existingMeeting : meetings) {
+
+        if (activity.conflictsWith(existingMeeting)) {
+
+            throw new IllegalArgumentException(
+                    "Meeting conflicts with an existing activity."
+            );
+        }
+    }
+
+    meetings.add(activity);
+
+    System.out.println(
+            "Meeting scheduled successfully."
+    );
+}
     // Display all scheduled meetings
     public void displayMeetings() {
 

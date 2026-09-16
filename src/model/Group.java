@@ -37,6 +37,16 @@ public class Group {
                     "Student cannot be null."
             );
         }
+        for (Student existingStudent : members) {
+
+            if (existingStudent.getStudentId()
+                    .equalsIgnoreCase(student.getStudentId())) {
+
+                throw new IllegalArgumentException(
+                        "Student is already a member of this group."
+                );
+            }
+        }
 
         members.add(student);
     }

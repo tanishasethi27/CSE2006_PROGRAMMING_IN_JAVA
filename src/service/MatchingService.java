@@ -23,8 +23,7 @@ public class MatchingService {
                     "At least one student is required."
             );
         }
-
-       String firstStudentId =
+String firstStudentId =
         students.get(0).getStudentId();
 
 List<TimeSlot> firstSchedule =

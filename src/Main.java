@@ -198,10 +198,15 @@ public class Main {
                 year
         );
 
+        if (findStudent(id) != null) {
+            throw new IllegalArgumentException(
+                    "Student ID already exists."
+            );
+        }
+
         students.add(student);
 
         scheduleService.registerStudent(student);
-
         System.out.println(
                 "Student registered successfully."
         );
@@ -243,10 +248,23 @@ public class Main {
                 scanner.nextLine()
         );
 
-        TimeSlot slot = new TimeSlot(
-                LocalTime.of(startHour, startMinute),
-                LocalTime.of(endHour, endMinute)
+        LocalTime start = LocalTime.of(
+        startHour,
+        startMinute
         );
+
+        LocalTime end = LocalTime.of(
+        endHour,
+        endMinute
+        );
+
+        if (!ValidationUtil.isValidTime(start, end)) {
+            throw new IllegalArgumentException(
+                    "Start time must be before end time."
+            );
+        }
+
+        TimeSlot slot = new TimeSlot(start, end);
 
         scheduleService.addFreeTime(
                 student,

@@ -24,10 +24,18 @@ public class MatchingService {
             );
         }
 
-        List<TimeSlot> commonSlots =
-                new ArrayList<>(schedules.get(
-                        students.get(0).getStudentId()
-                ));
+       String firstStudentId =
+        students.get(0).getStudentId();
+
+List<TimeSlot> firstSchedule =
+        schedules.get(firstStudentId);
+
+if (firstSchedule == null) {
+    return new ArrayList<>();
+}
+
+List<TimeSlot> commonSlots =
+        new ArrayList<>(firstSchedule);
 
         for (int i = 1; i < students.size(); i++) {
 

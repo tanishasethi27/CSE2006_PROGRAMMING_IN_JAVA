@@ -106,7 +106,7 @@ javac -d out src/exception/*.java src/model/*.java src/service/*.java src/util/*
 
 java -cp out Main
 
-## 📊 Output
+## 📊 Output of Main Menu
 ![Output](OUTPUT.png)
 
 ## 🔮 Future Work

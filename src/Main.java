@@ -173,6 +173,23 @@ public class Main {
         int year = Integer.parseInt(
                 scanner.nextLine()
         );
+        if (!ValidationUtil.isValidStudentId(id)) {
+            throw new IllegalArgumentException(
+                "Student ID cannot be empty."
+            );
+        }
+
+        if (!ValidationUtil.isValidName(name)) {
+            throw new IllegalArgumentException(
+                "Student name cannot be empty."
+            );
+        }
+
+        if (!ValidationUtil.isValidYear(year)) {
+            throw new IllegalArgumentException(
+                "Year must be between 1 and 5."
+            );
+        }
 
         Student student = new Student(
                 id,
